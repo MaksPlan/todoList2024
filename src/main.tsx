@@ -11,9 +11,9 @@ import MainLayout from './layout/MainLayout.tsx'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
 <BrowserRouter>
-<MainLayout>
+{/* <MainLayout> */}
 <App />
-</MainLayout>
+{/* </MainLayout> */}
 </BrowserRouter>
   </React.StrictMode>,
 )

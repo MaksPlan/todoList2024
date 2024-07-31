@@ -3,10 +3,10 @@ import { Children } from "react";
 
 
 
-const MainLayout = (Children: any) => {
+const MainLayout = () => {
 return <div className="container mx-auto bg-[#34d399]">
 
-{Children}
+{/* {Children} */}
 </div>
 };
 
