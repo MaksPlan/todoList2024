@@ -6,7 +6,7 @@ function App() {
 
   return (
     <Routes>
-<Route path='/' element={<MainPage/>}/>
+      <Route path='/' element={<MainPage/>}/>
     </Routes>
     // <>
     //  <h1 className='text-3xl font-bold underline'>Hello World</h1>
