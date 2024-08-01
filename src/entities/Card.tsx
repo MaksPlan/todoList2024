@@ -2,13 +2,13 @@ import { FC } from "react";
 import { IData } from "../mock/data";
 
 interface IProps {
-    key: number;
     cardData: IData;
 }
 
-const Card: FC<IProps> = (key, {cardData}): JSX.Element => {
+const Card: FC<IProps> = ({cardData}): JSX.Element => {
+    const {name, id} = cardData
     return <li className="box-border h-32 w-32">
-            <p className="italic bold"> {cardData.name}</p>
+            <p className="italic bold"> {name}</p>
         </li>
     
 };

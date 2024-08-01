@@ -1,8 +1,6 @@
 export interface IData {
-    card: {
-        name: string;
-        id: number;
-    }
+    name: string;
+    id: number;
 
 }
 
