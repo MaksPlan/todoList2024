@@ -1,12 +1,8 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, } from "react-router-dom"
 import MainPage from "./components/MainPage"
 
 function App() {
-  // const [count, setCount] = useState(0)
-
-
-
-
+// const dispatch = ;
 
  
   return (
