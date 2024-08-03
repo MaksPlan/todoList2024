@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const InputField = () => {
+    const [inputState, setInputState] = useState<string>('Write Down')
     return (
-        <input>
-            Write Down
-        </input>
+        <div>
+ <input autoFocus onChange={
+        (e) => setInputState(e.target.value)
+        
+        } />
+            
+      <p>
+        {inputState}
+      </p>
+        </div>
+       
     );
 };
 

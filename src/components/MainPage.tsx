@@ -4,6 +4,7 @@ import Card from "../entities/Card";
 import './main.css';
 import { getCardList } from "../store/cardListSlice";
 import Modal from "./Modal";
+import ButtonAction from "./ButtonAction";
 
 
 const MainPage = () => {
@@ -18,7 +19,8 @@ const MainPage = () => {
     return <div className="container mx-auto">
               <h1 className="underline">Hello React</h1>
               <Modal/>
-
+              {/* Only adding button */}
+              {/* <ButtonAction name={""} id={0} />  */}
               <div>
                {
                 cardListState.map((cardData: IData) => {

@@ -10,17 +10,17 @@ const initialState: TCardListState = {
     cardList: [],
 };
 
-const cardListSlice = createSlice({
+export const cardListSlice = createSlice({
     name: 'cardList',
     initialState,
-    reducer: {
+    reducers: {
         addToList: (state, action: PayloadAction<IData>) => {
             state.cardList = [...state.cardList, action.payload]
         },
         deleteFromList: (state, action: PayloadAction<IData>) => {
             state.cardList.forEach(
                 (card) => {
-                    if (card.id == !action.payload.id) {
+                    if (card.id = !action.payload.id) {
                         state.cardList.push(card)
                     }
 
@@ -28,7 +28,7 @@ const cardListSlice = createSlice({
             )
             /*Пробегаем по циклу и пушим в массив все обьекты подхоядие по усдловию 
             далее делаем из масиива коллекцию уникальных значений и разворачсиваем ее в наш стейт*/
-            let localState = new Set(state.cardList);
+            const localState = new Set(state.cardList);
             state.cardList = [...localState]
 
         }
@@ -41,7 +41,10 @@ const store = configureStore({
     }
 });
 
-export const getCardList = (state: RootState) => state.cardList;
+
+
+export const getCardList = (state: RootState) => state.cardList.cardList;
+export const {addToList, deleteFromList} = cardListSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
