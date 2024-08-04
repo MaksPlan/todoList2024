@@ -1,22 +1,24 @@
-import { FC } from 'react';
-import { IData } from '../mock/data';
-import  { addToList, deleteFromList, useAppDispatch } from '../store/cardListSlice';
+import {  FC, } from 'react';
+// import { IData } from '../mock/data';
 
 interface IButton {
-    type: string;
-    card: IData;
+    name: string;
+    onClick: () => void;
 }
 
-const ButtonAction: FC<IButton> = (type, card) => {
+
+
+const ButtonAction: FC<IButton> = ({ name, onClick}) => {
    
 
     return (
-        <button 
+       <button 
         className="bg-blue-200 text-black active:bg-blue-500 
         font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1  overflow-x-hidden"
           type="button"
+          onClick={onClick}
         >
-              
+              {name}
         </button>
     );
 

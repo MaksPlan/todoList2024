@@ -7,9 +7,16 @@ interface IProps {
 
 const Card: FC<IProps> = ({cardData}): JSX.Element => {
     const {name, id} = cardData
-    return <li className="box-border h-32 w-32">
+    return <div className="
+    box-border
+     bg-activeBlue
+    scale-50 hover:scale-75 ease-in duration-500
+      " >
+         <li key={id}>
             <p className="italic bold"> {name}</p>
         </li>
+    </div>
+       
     
 };
 
