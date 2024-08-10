@@ -11,6 +11,8 @@ export default {
       'baseBlue': '#312e81',
       'activeBlue': '#a5b4fc',
       'wrapBlue': '#6366f1',
+      'gray': '#8492a6',
+      'gray-light': '#d3dce6',
 
     },
     screens: {

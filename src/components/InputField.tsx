@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import ButtonAction from './ButtonAction';
+import  { FC, useState } from 'react';
 
-const InputField = () => {
+interface IProps {
+    name: string;
+}
+
+const InputField:FC<IProps> = ({name}) => {
     const [taskNameState, setTaskNameState] = useState<string>('Task Name');
-    const [taskDescrpt, setTaskDescrpt] = useState<string>('Description')
     return (
-        <div>
+        <div className='flex flex-col justify-between space-10 pb-5'>
+             <span className='pb-3'>
+           {name}
+          </span>
+
  <input autoFocus onChange={
         (e) => setTaskNameState(e.target.value)
 } />
-        <input onChange={
-        (e) => setTaskDescrpt(e.target.value)
-}
-/>
-            <ButtonAction type={'save'} card={{
-                name: taskNameState,
-                id: Math.random(),
-            }} />
+
+      
         </div>
        
     );

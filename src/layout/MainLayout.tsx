@@ -10,7 +10,9 @@ return <div className="sm md lg xl bg-baseBlue h-screen">
     <header className=" container mx-auto
   
     bg-gradient-to-r from-indigo-500 to-transparent
-      pb-50">
+      pb-50
+      mb-5
+      ">
         <div className="flex pt-50 justify-center">
             <span className="font-bold text-3xl text-center italic">
             TO DO LIST

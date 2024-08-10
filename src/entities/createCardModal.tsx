@@ -1,30 +1,21 @@
-import React from 'react';
-import InputField from '../components/InputField';
+import  { FC, ReactNode } from 'react';
 
 interface IProps {
-    show: boolean;
+   children: ReactNode
 }
 
-const createCardModal = ({show}: IProps) => {
+const CreateCardModal:FC<IProps> = ({children}) => {
 
 
     return (
-    <div className=' fixed left-0 top-0 z-[1055] hidden h-full 
-    w-full overflow-y-auto overflow-x-hidden outline-none
-    '>
-        <span>
-            create Task
-        </span>
-        <p>
-            Name
-        </p>
-        <InputField/>
-        <p>
-            Description
-        </p>
-        {/* <ButtonAction func={() => createNewTask } name={'create'} /> */}
+    <div 
+   //  className=' fixed left-0 top-0 z-[1055] hidden h-full 
+   //  w-full overflow-y-auto overflow-x-hidden outline-none
+   //  '
+    >
+       {children}
     </div>
     );
 };
 
-export default createCardModal;
+export default CreateCardModal;
