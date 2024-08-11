@@ -20,8 +20,8 @@ const Modal:FC<IProps> = ({children}) => {
     return (
       isMounted
       ? (<PortalWrapper id={MODAL_CONTAINER_ID}>
-        <div className="fixed  transition duration-500 delay-75 top-0 left-0  w-full z-10 mx-auto h-screen flex justify-center">
-          <div className="relative w-full  translate-y-[-50px] h-screen bg-gray/30  flex shadow-4 items-center">
+        <div className="fixed  transition duration-500 delay-75 top-0 left-0  w-full z-10 mx-auto h-lvh flex justify-center">
+          <div className="relative w-full  translate-y-[-50px] h-full bg-gray/30  flex shadow-4 items-center">
          {children}
           </div>
           

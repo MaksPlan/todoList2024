@@ -1,8 +1,9 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IData } from "../mock/data";
-import { useDispatch } from "react-redux";
+import { TypedUseSelectorHook, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-type TCardListState = { cardList: IData[] }
+export type TCardListState = { cardList: IData[] | [] }
 
 
 
@@ -18,22 +19,16 @@ export const cardListSlice = createSlice({
             state.cardList = [...state.cardList, action.payload]
         },
         deleteFromList: (state, action: PayloadAction<IData>) => {
-            state.cardList.forEach(
-                (card) => {
-                    if (card.id = !action.payload.id) {
-                        state.cardList.push(card)
-                    }
-
-                }
+            state.cardList = state.cardList.filter(
+                (card: IData) => card.id !== action.payload.id
             )
-            /*Пробегаем по циклу и пушим в массив все обьекты подхоядие по усдловию 
-            далее делаем из масиива коллекцию уникальных значений и разворачсиваем ее в наш стейт*/
-            const localState = new Set(state.cardList);
-            state.cardList = [...localState]
-
+    },
+        addFetchData: (state, action: PayloadAction<IData[]>) => {
+                state.cardList = action.payload
         }
-    }
-})
+}
+}
+)
 
 const store = configureStore({
     reducer: {
@@ -44,10 +39,10 @@ const store = configureStore({
 
 
 export const getCardList = (state: RootState) => state.cardList.cardList;
-export const {addToList, deleteFromList} = cardListSlice.actions
+export const { addToList, deleteFromList, addFetchData } = cardListSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
-
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export default store

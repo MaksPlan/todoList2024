@@ -12,6 +12,7 @@ import MainLayout from './layout/MainLayout.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    
     <Provider store={store}>
     <BrowserRouter>
 <MainLayout Children={<App/>}>

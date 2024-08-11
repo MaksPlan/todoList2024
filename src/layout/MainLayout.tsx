@@ -6,7 +6,7 @@ interface IProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLD
 
 
 const MainLayout = ({Children}: IProps) => {
-return <div className="sm md lg xl bg-baseBlue h-screen">
+return <div className="sm md lg xl bg-baseBlue h-full">
     <header className=" container mx-auto
   
     bg-gradient-to-r from-indigo-500 to-transparent
