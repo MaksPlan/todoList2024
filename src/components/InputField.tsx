@@ -11,8 +11,9 @@ const InputField:FC<IProps> = ({name, setImputData}) => {
     const [taskNameState, setTaskNameState] = useState<string>('Task Name');
     useEffect(() => {
         setImputData({
-            name: taskNameState,
-            id: Math.random()
+            title: taskNameState,
+            id: Math.random(),
+            completed: false,
         })
     }, [taskNameState])
 

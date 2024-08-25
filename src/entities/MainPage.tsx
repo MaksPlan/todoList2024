@@ -1,12 +1,12 @@
 import {  useEffect, useState } from "react";
-import   { IData } from "../mock/data";
-import Card from "../entities/Card";
-import './main.css';
-import ButtonAction from "./ButtonAction";
-import Modal from "./Modal";
-import CreateCardModal from "../entities/createCardModal";
-import FormIWindow from "./FormIWindow";
+import   data, { IData } from "../mock/data";
+import Card from "./Card";
+import ButtonAction from "../components/ButtonAction";
+import Modal from "../components/Modal";
+import CreateCardModal from "./createCardModal";
+import FormIWindow from "../components/FormIWindow";
 import { addFetchData, getCardList, TCardListState, useAppDispatch, useAppSelector } from "../store/cardListSlice";
+import '.././layout/main.css'
 
 const MainPage = () => {
 
@@ -28,7 +28,8 @@ const MainPage = () => {
 
    useEffect(() => {
     try {
-        fetchTodos()
+        // fetchTodos()
+        dispatch(addFetchData(data))
     } catch (error) {
         throw {'Error connecting ': error}
     }
@@ -62,7 +63,7 @@ const MainPage = () => {
            <ButtonAction name={'create task'} onClick={modalButtonHandler}/> 
         </div>
         {/* Контейнер со списком задач */}
-        <div className="container mx-auto flex flex-row flex-wrap h-full">
+        <div className="container mx-auto flex flex-col  h-full">
              { cardList }
         </div>
         

@@ -1,4 +1,5 @@
 import {  DetailedHTMLProps, HTMLAttributes, ReactNode, } from "react";
+import './main.css'
 
 interface IProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     Children: ReactNode;
