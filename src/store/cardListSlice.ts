@@ -23,6 +23,14 @@ export const cardListSlice = createSlice({
                 (card: IData) => card.id !== action.payload.id
             )
     },
+        updateCard: (state, action: PayloadAction<IData>) => {
+            state.cardList.forEach((card, i) => {
+             if   (card.id == action.payload.id ) {
+                 state.cardList[i] =  action.payload
+             }
+            })
+            state.cardList 
+        },
         addFetchData: (state, action: PayloadAction<IData[]>) => {
                 state.cardList = action.payload
         }
@@ -39,7 +47,7 @@ const store = configureStore({
 
 
 export const getCardList = (state: RootState) => state.cardList.cardList;
-export const { addToList, deleteFromList, addFetchData } = cardListSlice.actions
+export const { addToList, deleteFromList, addFetchData, updateCard } = cardListSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

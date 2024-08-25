@@ -3,7 +3,7 @@ import { IData } from "../mock/data";
 import ButtonAction from "../components/ButtonAction";
 import Modal from "../components/Modal";
 import FormWrapper from "../components/FormWrapper";
-import { deleteFromList, useAppDispatch } from "../store/cardListSlice";
+import { addToList, deleteFromList,updateCard ,useAppDispatch } from "../store/cardListSlice";
 import FormIWindow from "../components/FormIWindow";
 
 interface IProps {
@@ -13,17 +13,18 @@ interface IProps {
 
 
 const Card: FC<IProps> = ({cardData}): JSX.Element => {
-    const {title, descrpt, completed, category} = cardData
     const [toggler, setToggler] = useState<boolean>(false)
-    const disatch = useAppDispatch()
     const [deleteModal, setDeleteModal] = useState<boolean>(false)
     const [viewToggler, setViewToggler] = useState<boolean>(false)
-    const [editToggler, setEditToggler] = useState<boolean>(false)
+    const [editToggler, setEditToggler] = useState<boolean>(true)
+    const [newTitle, setNewTitle]  = useState<string>('')
+    const dispatch = useAppDispatch();
+
 
     const deleteModalHandler = () => {        
       setToggler(!toggler)
       setDeleteModal(!deleteModal)
-      disatch(deleteFromList(cardData))
+      dispatch(deleteFromList(cardData))
     }
 
     const cancleHandler = () => {
@@ -35,7 +36,17 @@ const Card: FC<IProps> = ({cardData}): JSX.Element => {
         setViewToggler(!viewToggler)
         setToggler(!toggler)
     }
+
+    const updateCardData = () => {
+
+        dispatch(updateCard({
+            ...cardData,
+            title: newTitle,
+        }));
+        viewwHanler();
+    }
    
+    const {title, descrpt, completed, category} = cardData
 
 
     return <div className=" 
@@ -88,12 +99,13 @@ const Card: FC<IProps> = ({cardData}): JSX.Element => {
         viewToggler && <FormWrapper>
             <div>
                 <div>
-                    <input disabled={editToggler ? true : false} placeholder={title}
-                    onChange={(e) => e.target.value}
+                    <input disabled={editToggler ? true : false} defaultValue={title}
+                    onChange={(e) => setNewTitle(e.target.value)}
                     />
                 </div>
                 <button onClick={() => setEditToggler(!editToggler)}>edit</button>
                 <ButtonAction onClick={viewwHanler} name={'close'} />
+                <ButtonAction name={'save'} onClick={() => updateCardData()}/>
             </div>
         </FormWrapper >
 
