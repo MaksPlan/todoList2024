@@ -7,6 +7,8 @@ import CreateCardModal from "./createCardModal";
 import FormIWindow from "../components/FormIWindow";
 import { addFetchData, getCardList, TCardListState, useAppDispatch, useAppSelector } from "../store/cardListSlice";
 import '.././layout/main.css'
+import SearchTask from "../components/SearchTask";
+import useModal from "../hooks/useModal";
 
 const MainPage = () => {
 
@@ -14,6 +16,8 @@ const MainPage = () => {
     const [modalToggler, setModalToggler] = useState<boolean>(false)
    const reduxCardState = useAppSelector(getCardList);
    const dispatch = useAppDispatch()
+//    использую кастомный хук для модалки
+const {openModal, modalHandler, closeModal} = useModal(<FormIWindow  />)
 
    const fetchTodos = async () => {
     const url = 'https://jsonplaceholder.typicode.com/todos'
@@ -45,13 +49,13 @@ const MainPage = () => {
 
     
 
-    const modalButtonHandler = () => {
+    function modalButtonHandler() {
         setModalToggler(!modalToggler)
     }
 
    const cardList = cardListState.length > 0 ?  cardListState.map((cardData: IData) => {
         return cardData.id ?
-        <Card cardData={cardData} />
+        <Card key={cardData.id} cardData={cardData} />
          : <p>
             'error: cardData is undefiend';
           </p>
@@ -60,7 +64,8 @@ const MainPage = () => {
          return <div className="mx-auto flex flex-col base-center"
     >
         <div className="pt-10 flex justify-center">
-           <ButtonAction name={'create task'} onClick={modalButtonHandler}/> 
+            <SearchTask search={setCardListState}/>
+           <ButtonAction name={'create task'} onClick={modalHandler}/> 
         </div>
         {/* Контейнер со списком задач */}
         <div className="container mx-auto flex flex-col  h-full">
@@ -68,14 +73,7 @@ const MainPage = () => {
         </div>
         
             
-          {
-            modalToggler && (
-                <CreateCardModal>
-                     <Modal>
-                        <FormIWindow onClick={modalButtonHandler} />
-                    </Modal>
-                </CreateCardModal>          
-            )
+          { openModal()
           }
           
 

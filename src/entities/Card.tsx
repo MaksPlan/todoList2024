@@ -93,8 +93,8 @@ const Card: FC<IProps> = ({cardData}): JSX.Element => {
                          Wanna delete from list ?
                     </h2>
                 </div>
-                <div className="p-x-10 pt-5 flex flex-row justify-between">
-                    <ButtonAction name={'delete'} onClick={deleteModalHandler}/>
+                <div className="p-x-10 pt-5 flex flex-row justify-end">
+                 <ButtonAction name={'delete'} onClick={deleteModalHandler}/>
                 <ButtonAction name={'cancle'} onClick={cancleHandler}/>
                 </div>
                 
