@@ -1,48 +1,42 @@
-import { FC, useState } from "react";
-import { getCardList, useAppSelector } from "../store/cardListSlice";
+import { FC, SetStateAction, useEffect, useState } from "react";
 import { IData } from "../mock/data";
+import { getCardList, TCardListState,  useAppSelector } from "../store/cardListSlice";
 
 interface ISerarch {
-    search: () => IData[] | [];
+    search: React.Dispatch<React.SetStateAction<TCardListState | IData[] | []>>
 }
 
 const SearchTask: FC<ISerarch> = ({search}) => {
 
-    
+const mainCardList = useAppSelector(getCardList)
+const [filltredSearcH, setFilltredSearch] = useState<string>("")
 
-    const [searchThisTask, setSearchThisTask] = useState<string>('')
-    const searchArray: IData[] | [] = []
-    const getTaskList = useAppSelector(getCardList);
+useEffect(() => {
+ serachHandler();
+}, [filltredSearcH])
 
-     const searchThrottling = (value: string) => {
-            setTimeout(
-                () => {
-                    setSearchThisTask(value)
-                }, 0.5
-            )
-        };
-
-     const fillterFunc = () => {
-        getTaskList.filter(
-            (task: IData) => {
-                searchThisTask == task.title || task.descrpt
-                searchArray.push(task);
-            }
-        )
-        search(searchArray)
-        console.log(searchArray)
-        // return searchArray
-     }   
-
-
+  
+const searchDebounce = (e: { target: { value: SetStateAction<string>; }; }) => {
+  setTimeout(() => {
+        setFilltredSearch(e.target.value);
+        serachHandler();
+  }, 0.5)
+}
 
    return <input type="text" onChange={
-        (e) => {
-            searchThrottling(e.target.value)
-            fillterFunc();
-        }
-    }  />
+    (e) => searchDebounce(e)} />
 
-};
+   function serachHandler()  {
+    const result: IData[] | [] = [];
 
-export default SearchTask
+     mainCardList.filter((data: IData) => {
+     if   (data.title.toLowerCase().includes(filltredSearcH) || data?.descrpt.toLowerCase().includes(filltredSearcH)) {
+        result.push(data)
+     }
+    })
+   search(result.length > 0 ? result : mainCardList) 
+}
+
+   }
+
+export default SearchTask;

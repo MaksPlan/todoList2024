@@ -6,8 +6,6 @@ interface IButton {
     onClick: () => void;
 }
 
-
-
 const ButtonAction: FC<IButton> = ({ name, onClick}) => {
    
 

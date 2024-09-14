@@ -1,4 +1,4 @@
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { configureStore, createSlice, isAction, PayloadAction } from "@reduxjs/toolkit";
 import { IData } from "../mock/data";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -33,6 +33,9 @@ export const cardListSlice = createSlice({
         },
         addFetchData: (state, action: PayloadAction<IData[]>) => {
                 state.cardList = action.payload
+        },
+        searchData: (state, action: PayloadAction<IData[]>) => {
+            state.cardList = action.payload.length > 0 ? action.payload : state.cardList
         }
 }
 }
@@ -47,7 +50,7 @@ const store = configureStore({
 
 
 export const getCardList = (state: RootState) => state.cardList.cardList;
-export const { addToList, deleteFromList, addFetchData, updateCard } = cardListSlice.actions
+export const { addToList, deleteFromList, addFetchData, updateCard, searchData } = cardListSlice.actions
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

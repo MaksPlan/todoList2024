@@ -1,6 +1,7 @@
-import {   createContext, ReactNode, useState } from "react";
+import {  createContext, JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useState } from "react";
 import Modal from "../components/Modal";
 import CreateCardModal from "../entities/createCardModal";
+import ButtonAction from "../components/ButtonAction";
 
 type TModalProps = ReactNode
 
@@ -14,26 +15,25 @@ export default function useModal(mainComponent: TModalProps) {
 
     const [isShonw, setIsShonw] = useState<boolean>(false);
 
-    const modalHandler = () => {
-        setIsShonw(true)
-    }
+function createModal() {
+    return   isShonw && <CreateCardModal>
+    <modalState.Provider value={
+        {closeModal}
+    }>
+    <Modal>
+    {/* создать фукнцию которая будет открывать модалку и вставлять сюда чилдрен компонет */}
+  {mainComponent}
+    <ButtonAction name={"close"} onClick={closeModal}/>
+    </Modal>
+    </modalState.Provider>
+
+</CreateCardModal>
+}
 
     function openModal() {
-
-    return   isShonw && 
- 
-        <CreateCardModal>
-            <modalState.Provider value={
-                {closeModal}
-            }>
-            <Modal>
-            {mainComponent 
-            }
-            
-            </Modal>
-            </modalState.Provider>
-       
-        </CreateCardModal>
+    setIsShonw(true)
+   
+    
 
     }
 
@@ -41,6 +41,6 @@ export default function useModal(mainComponent: TModalProps) {
         setIsShonw(false)
     }
 
-    return {openModal, modalHandler, closeModal}
+    return {createModal, openModal, closeModal}
 
 }
